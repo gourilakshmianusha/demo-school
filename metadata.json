@@ -1,0 +1,6 @@
+{
+  "name": "Smt Drakshayani Kalyanshettar Public School & ERP",
+  "description": "Official website and integrated school management system for Smt Drakshayani Kalyanshettar Public School, Hubli (managed by J K Education Society, CBSE Affiliation No. 830277).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
