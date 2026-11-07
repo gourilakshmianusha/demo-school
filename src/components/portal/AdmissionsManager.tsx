@@ -62,11 +62,10 @@ export const AdmissionsManager: React.FC = () => {
     documentChecklist: {
       birthCertificate: true,
       transferCertificate: false,
-      previousReportCard: false,
+      marksCard: false,
       aadhaarCopy: true,
-      photos: true,
+      photosUploaded: true,
     },
-    declarationAgreed: true,
   });
 
   const handleOpenAdd = () => {
@@ -87,11 +86,10 @@ export const AdmissionsManager: React.FC = () => {
       documentChecklist: {
         birthCertificate: true,
         transferCertificate: false,
-        previousReportCard: false,
+        marksCard: false,
         aadhaarCopy: true,
-        photos: true,
+        photosUploaded: true,
       },
-      declarationAgreed: true,
     });
     setIsAddAppOpen(true);
   };

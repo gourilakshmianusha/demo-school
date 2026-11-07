@@ -119,18 +119,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
               </button>
             </div>
 
-            {/* Persona Switcher Menu */}
+            {/* Portals & Login Switcher */}
             <div className="relative">
               <button
                 onClick={() => setRoleDropdownOpen(!roleDropdownOpen)}
-                className="flex items-center gap-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded px-2 py-0.5 hover:bg-amber-500/30 transition-colors text-[10px] sm:text-xs"
-                title="Select role-specific login portal"
+                className="flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded px-2.5 py-0.5 hover:bg-amber-500/30 transition-colors text-[10px] sm:text-xs font-semibold"
+                title="School Community Portals & Login"
               >
-                <UserCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                <span className="capitalize font-medium truncate max-w-[80px] sm:max-w-none">
-                  {currentUser.role.replace('_', ' ')}
-                </span>
-                <ChevronDown className="w-3 h-3" />
+                <LogIn className="w-3 h-3 text-amber-400" />
+                <span>Portals & Login</span>
+                <ChevronDown className="w-3 h-3 text-amber-300/80" />
               </button>
 
               {roleDropdownOpen && (
@@ -170,28 +168,28 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
                     ))}
                   </div>
 
-                  {/* Dedicated Super Admin Standalone Action */}
+                  {/* Dedicated Management Leadership Standalone Action */}
                   <div className="pt-2 mt-1 border-t border-slate-100 px-2 pb-1">
-                    <div className="text-[10px] font-bold text-red-700 uppercase tracking-wider px-2 py-0.5">
-                      Root Security Access
+                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-2 py-0.5">
+                      Executive Administration
                     </div>
                     <button
                       onClick={() => {
                         openSuperAdminLogin();
                         setRoleDropdownOpen(false);
                       }}
-                      className="w-full text-left p-2.5 rounded-lg bg-red-950 text-white hover:bg-red-900 transition-colors border border-red-800 flex items-center justify-between group"
+                      className="w-full text-left p-2.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors border border-slate-800 flex items-center justify-between group"
                     >
                       <div>
-                        <div className="flex items-center gap-1.5 font-bold text-xs text-red-200 group-hover:text-white">
+                        <div className="flex items-center gap-1.5 font-bold text-xs text-amber-300 group-hover:text-white">
                           <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-                          <span>Super Admin Root Console</span>
+                          <span>Management Leadership Console</span>
                         </div>
-                        <div className="text-[10px] text-red-300/80 font-normal mt-0.5">
-                          Master key • 2FA token • Unrestricted system audit
+                        <div className="text-[10px] text-slate-300 font-normal mt-0.5">
+                          Executive security key • Unrestricted system audit
                         </div>
                       </div>
-                      <span className="text-[10px] bg-red-800 text-amber-300 px-2 py-0.5 rounded font-mono font-bold shrink-0">
+                      <span className="text-[10px] bg-amber-400 text-slate-950 px-2 py-0.5 rounded font-mono font-bold shrink-0">
                         OPEN →
                       </span>
                     </button>
@@ -300,14 +298,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
                   <LogIn className="w-3.5 h-3.5 text-amber-400" />
                   <span>Portal Logins</span>
                 </button>
-                <button
-                  onClick={openSuperAdminLogin}
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-red-300 bg-slate-950 hover:bg-red-950/80 border border-red-900/50 hover:border-red-700 rounded-lg transition-colors whitespace-nowrap shrink-0"
-                  title="Open Dedicated Super Admin Security Console"
-                >
-                  <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
-                  <span>Super Admin</span>
-                </button>
               </div>
             )}
 
@@ -367,10 +357,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
                   openSuperAdminLogin();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold text-red-200 bg-red-950 border border-red-800 rounded-lg shadow-sm"
+                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-bold text-amber-200 bg-slate-900 border border-slate-700 rounded-lg shadow-sm"
               >
                 <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-                <span>Super Admin Root Security Login</span>
+                <span>Executive Management Console Login</span>
               </button>
             )}
           </div>

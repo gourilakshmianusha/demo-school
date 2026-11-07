@@ -49,11 +49,20 @@ export const FeeManager: React.FC = () => {
   const [activeReceiptPayment, setActiveReceiptPayment] = useState<FeePayment | null>(null);
 
   // Create Invoice Form State
-  const [invoiceForm, setInvoiceForm] = useState({
+  const [invoiceForm, setInvoiceForm] = useState<{
+    studentId: string;
+    studentName: string;
+    className: string;
+    term: 'Term 1' | 'Term 2' | 'Annual';
+    academicYear: string;
+    dueDate: string;
+    totalAmount: number;
+    concessionAmount: number;
+  }>({
     studentId: students[0]?.id || '',
     studentName: students[0] ? `${students[0].firstName} ${students[0].lastName}` : '',
     className: students[0]?.className || 'Class I',
-    term: 'Term 1 Tuition & Activity',
+    term: 'Term 1',
     academicYear: '2024-2025',
     dueDate: '2024-12-15',
     totalAmount: 18000,
@@ -66,7 +75,7 @@ export const FeeManager: React.FC = () => {
       studentId: std?.id || '',
       studentName: std ? `${std.firstName} ${std.lastName}` : '',
       className: std?.className || 'Class I',
-      term: 'Term 2 Tuition & Development',
+      term: 'Term 2',
       academicYear: '2024-2025',
       dueDate: new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0],
       totalAmount: 18500,
@@ -103,11 +112,6 @@ export const FeeManager: React.FC = () => {
       dueDate: invoiceForm.dueDate,
       totalAmount: Number(invoiceForm.totalAmount),
       concessionAmount: Number(invoiceForm.concessionAmount) || 0,
-      feeBreakdown: [
-        { feeHead: 'Tuition Fee (CBSE NCERT Curriculum)', amount: Number(invoiceForm.totalAmount) * 0.7 },
-        { feeHead: 'Early Learning / Activity & Kreedo Lab', amount: Number(invoiceForm.totalAmount) * 0.2 },
-        { feeHead: 'Examination & Institutional Resources', amount: Number(invoiceForm.totalAmount) * 0.1 },
-      ],
     });
 
     setIsAddInvoiceOpen(false);
@@ -444,13 +448,15 @@ export const FeeManager: React.FC = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-semibold text-slate-700 mb-1">Fee Term *</label>
-                  <input
-                    type="text"
-                    required
+                  <select
                     value={invoiceForm.term}
-                    onChange={(e) => setInvoiceForm({ ...invoiceForm, term: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg"
-                  />
+                    onChange={(e) => setInvoiceForm({ ...invoiceForm, term: e.target.value as 'Term 1' | 'Term 2' | 'Annual' })}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                  >
+                    <option value="Term 1">Term 1</option>
+                    <option value="Term 2">Term 2</option>
+                    <option value="Annual">Annual</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block font-semibold text-slate-700 mb-1">Due Date *</label>
@@ -529,14 +535,16 @@ export const FeeManager: React.FC = () => {
 
             <form onSubmit={handleSaveEditInvoice} className="space-y-3 text-xs">
               <div>
-                <label className="block font-semibold text-slate-700 mb-1">Term Description</label>
-                <input
-                  type="text"
-                  required
+                <label className="block font-semibold text-slate-700 mb-1">Fee Term *</label>
+                <select
                   value={invoiceForm.term}
-                  onChange={(e) => setInvoiceForm({ ...invoiceForm, term: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg"
-                />
+                  onChange={(e) => setInvoiceForm({ ...invoiceForm, term: e.target.value as 'Term 1' | 'Term 2' | 'Annual' })}
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg bg-white"
+                >
+                  <option value="Term 1">Term 1</option>
+                  <option value="Term 2">Term 2</option>
+                  <option value="Annual">Annual</option>
+                </select>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

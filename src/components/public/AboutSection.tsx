@@ -218,6 +218,64 @@ export const AboutSection: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* 6. Teaching Faculty Directory (CBSE OASIS 1.5:1 ratio compliant) */}
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <div>
+            <span className="text-xs uppercase tracking-widest text-amber-700 font-bold">
+              Pedagogical Team & Mentors
+            </span>
+            <h2 className="text-2xl font-serif font-bold text-slate-900">
+              Teaching Faculty & Specialized Educators
+            </h2>
+          </div>
+          <div className="text-xs text-slate-500 font-medium">
+            Active Faculty: <strong className="text-slate-900">{staff.length} Teachers</strong> · CBSE Section Ratio: <span className="text-emerald-700 font-bold">1.5 : 1 Compliant</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staff.map((member) => (
+            <div
+              key={member.id}
+              className="bg-white rounded-xl border border-slate-200 p-5 shadow-sm space-y-3 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-sm font-serif">{member.name}</h3>
+                  <div className="text-xs font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 inline-block mt-0.5">
+                    {member.designation}
+                  </div>
+                </div>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold shrink-0">
+                  {member.category}
+                </span>
+              </div>
+
+              <div className="space-y-1.5 text-xs text-slate-600 border-t border-slate-100 pt-2.5">
+                <div>
+                  <span className="text-slate-400">Qualifications:</span>{' '}
+                  <strong className="text-slate-700">{member.qualifications}</strong>
+                </div>
+                <div>
+                  <span className="text-slate-400">Subjects:</span>{' '}
+                  <span className="text-slate-700 font-medium">{member.teachingSubjects.join(', ')}</span>
+                </div>
+                <div>
+                  <span className="text-slate-400">Classes:</span>{' '}
+                  <span className="text-slate-700">{member.assignedClasses.join(', ')}</span>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-slate-50 flex items-center justify-between text-[11px] text-slate-400">
+                <span>Code: {member.employeeCode}</span>
+                <span>Since: {member.joiningDate}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

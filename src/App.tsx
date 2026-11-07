@@ -23,9 +23,17 @@ import { LoginPage } from './components/auth/LoginPage';
 import { CheckCircle2, AlertTriangle, Info, X } from 'lucide-react';
 
 const MainApp: React.FC = () => {
-  const { isPortalView, isLoginPageOpen, toasts, removeToast } = useSchool();
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const {
+    isPortalView,
+    isLoginPageOpen,
+    toasts,
+    removeToast,
+    activePublicTab,
+    setActivePublicTab,
+  } = useSchool();
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
+  const activeTab = activePublicTab;
+  const setActiveTab = setActivePublicTab;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans overflow-x-hidden w-full max-w-full">

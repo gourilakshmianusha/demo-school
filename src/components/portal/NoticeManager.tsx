@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSchool } from '../../context/SchoolContext';
-import { Bell, Plus, Calendar, Tag, ShieldCheck, Megaphone, Edit2, Trash2, Search, Filter } from 'lucide-react';
+import { Bell, Plus, Calendar, Tag, ShieldCheck, Megaphone, Edit2, Trash2, Search, Filter, Eye } from 'lucide-react';
 import { NoticeRecord } from '../../types';
 
 export const NoticeManager: React.FC = () => {
-  const { notices, addNotice, updateNotice, deleteNotice, currentUser } = useSchool();
+  const { notices, addNotice, updateNotice, deleteNotice, currentUser, navigateToPublicPage } = useSchool();
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingNotice, setEditingNotice] = useState<NoticeRecord | null>(null);
 
@@ -96,16 +96,26 @@ export const NoticeManager: React.FC = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            resetForm();
-            setShowAddModal(true);
-          }}
-          className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold flex items-center gap-2 shadow-sm transition-colors shrink-0"
-        >
-          <Plus className="w-4 h-4 text-amber-400" />
-          <span>Broadcast New Notice</span>
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => navigateToPublicPage('news_events')}
+            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors"
+            title="View public circulars on News & Events page"
+          >
+            <Eye className="w-3.5 h-3.5 text-slate-500" />
+            <span>View Public Notices Page →</span>
+          </button>
+          <button
+            onClick={() => {
+              resetForm();
+              setShowAddModal(true);
+            }}
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-bold flex items-center gap-2 shadow-sm transition-colors shrink-0"
+          >
+            <Plus className="w-4 h-4 text-amber-400" />
+            <span>Broadcast New Notice</span>
+          </button>
+        </div>
       </div>
 
       {/* Filter Toolbar */}
@@ -249,7 +259,7 @@ export const NoticeManager: React.FC = () => {
                 <span className="font-semibold text-slate-800">Flag as High Priority Announcement</span>
               </label>
 
-              <div className="pt-2 flex justify-end gap-2">
+              <div className="pt-2 flex flex-wrap items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={() => {
@@ -260,12 +270,24 @@ export const NoticeManager: React.FC = () => {
                 >
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded shadow-sm"
-                >
-                  {editingNotice ? 'Update Notice' : 'Broadcast Notice'}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      handleSaveNotice(e);
+                      navigateToPublicPage('news_events');
+                    }}
+                    className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded transition-colors"
+                  >
+                    Broadcast & View Live →
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded shadow-sm"
+                  >
+                    {editingNotice ? 'Update Notice' : 'Broadcast Notice'}
+                  </button>
+                </div>
               </div>
             </form>
           </div>

@@ -17,6 +17,7 @@ import {
   Check,
   Phone,
   Mail,
+  Eye,
 } from 'lucide-react';
 import { StaffRecord, TeacherTrainingRecord } from '../../types';
 
@@ -30,6 +31,7 @@ export const StaffManager: React.FC = () => {
     addTeacherTraining,
     deleteTeacherTraining,
     showToast,
+    navigateToPublicPage,
   } = useSchool();
 
   const [activeTab, setActiveTab] = useState<'directory' | 'cbse_breakdown' | 'training'>('directory');
@@ -211,14 +213,24 @@ export const StaffManager: React.FC = () => {
               />
             </div>
 
-            {/* CREATE: Add Staff */}
-            <button
-              onClick={handleOpenAddStaff}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors"
-            >
-              <Plus className="w-3.5 h-3.5 text-amber-400" />
-              <span>Add Faculty Member</span>
-            </button>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={() => navigateToPublicPage('about')}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors"
+                title="View live faculty directory on About page"
+              >
+                <Eye className="w-3.5 h-3.5 text-slate-500" />
+                <span>View Public Faculty Page →</span>
+              </button>
+              {/* CREATE: Add Staff */}
+              <button
+                onClick={handleOpenAddStaff}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors"
+              >
+                <Plus className="w-3.5 h-3.5 text-amber-400" />
+                <span>Add Faculty Member</span>
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

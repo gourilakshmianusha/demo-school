@@ -70,6 +70,9 @@ interface SchoolContextType {
   logoutUser: () => void;
   isPortalView: boolean;
   setIsPortalView: (val: boolean) => void;
+  activePublicTab: string;
+  setActivePublicTab: (tab: string) => void;
+  navigateToPublicPage: (tab: string) => void;
   activeChildId: string;
   setActiveChildId: (id: string) => void;
 
@@ -199,9 +202,17 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [isLoginPageOpen, setIsLoginPageOpen] = useState<boolean>(false);
   const [targetLoginRole, setTargetLoginRole] = useState<string>('parent');
   const [isPortalView, setIsPortalView] = useState<boolean>(false);
+  const [activePublicTab, setActivePublicTab] = useState<string>('home');
   const [activeChildId, setActiveChildId] = useState<string>('std_001');
   const [language, setLanguage] = useState<'en' | 'kn' | 'hi'>('en');
   const [currentAcademicYear, setCurrentAcademicYear] = useState<string>('2024-2025');
+
+  const navigateToPublicPage = (tab: string) => {
+    setActivePublicTab(tab);
+    setIsPortalView(false);
+    setIsLoginPageOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Persistence helpers
   const loadStored = <T,>(key: string, fallback: T): T => {
@@ -1002,6 +1013,9 @@ export const SchoolProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         logoutUser,
         isPortalView,
         setIsPortalView,
+        activePublicTab,
+        setActivePublicTab,
+        navigateToPublicPage,
         activeChildId,
         setActiveChildId,
         language,
